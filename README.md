@@ -9,7 +9,7 @@
 CGLSLProgram program; <br>
 ... <br>
 // this is on the init function <br>
-program.loadShader(<SHADER_PATH>, CGLSLProgram::<VERTEX or TESSELLATION or GEOMETRY or FRAGMENT>);<br>
+program.loadShader(\<SHADER_PATH\>, CGLSLProgram::<VERTEX or TESSELLATION or GEOMETRY or FRAGMENT>);<br>
 program.create_link(); <br>
 program.enable();<br>
 program.addAttribute(<ATTRIB_NAME>);
