@@ -12,8 +12,8 @@ CGLSLProgram program; <br>
 program.loadShader(SHADER_PATH, CGLSLProgram::{VERTEX or TESSELLATION or GEOMETRY or FRAGMENT});<br>
 program.create_link(); <br>
 program.enable();<br>
-program.addAttribute(ATTRIB_NAME);
-program.addUniform(UNIFORM_NAME);
+program.addAttribute(ATTRIB_NAME); <br>
+program.addUniform(UNIFORM_NAME); <br>
 program.addSubroutine(SUBROUTINE_NAME); <br>
 program.addUniformSubroutine(UNIFORM_SUBR); <br>
 program.disable();<br>
