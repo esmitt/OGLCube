@@ -1,57 +1,47 @@
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// OpenGL Mathematics Copyright (c) 2005 - 2011 G-Truc Creation (www.g-truc.net)
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// Created : 2008-04-26
-// Updated : 2010-01-28
-// Licence : This source is under MIT License
-// File    : glm/gtx/string_cast.hpp
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// Dependency:
-// - GLM core
-// - GLM_GTC_half_float
-// - GLM_GTX_integer
-// - GLM_GTX_quaternion
-///////////////////////////////////////////////////////////////////////////////////////////////////
+/// @ref gtx_string_cast
+/// @file glm/gtx/string_cast.hpp
+///
+/// @see core (dependence)
+/// @see gtc_half_float (dependence)
+/// @see gtx_integer (dependence)
+/// @see gtx_quaternion (dependence)
+///
+/// @defgroup gtx_string_cast GLM_GTX_string_cast
+/// @ingroup gtx
+///
+/// @brief Setup strings for GLM type values
+///
+/// <glm/gtx/string_cast.hpp> need to be included to use these functionalities.
+/// This extension is not supported with CUDA
 
-#ifndef glm_gtx_string_cast
-#define glm_gtx_string_cast
+#pragma once
 
 // Dependency:
 #include "../glm.hpp"
-#include "../gtc/half_float.hpp"
-#include "../gtx/integer.hpp"
-#include "../gtx/unsigned_int.hpp"
-#include "../gtx/quaternion.hpp"
+#include "../gtc/type_precision.hpp"
+#include "../gtc/quaternion.hpp"
+#include "../gtx/dual_quaternion.hpp"
 #include <string>
 
-#if(defined(GLM_MESSAGES) && !defined(glm_ext))
+#if(GLM_COMPILER & GLM_COMPILER_CUDA)
+#	error "GLM_GTX_string_cast is not supported on CUDA compiler"
+#endif
+
+#if GLM_MESSAGES == GLM_MESSAGES_ENABLED && !defined(GLM_EXT_INCLUDED)
 #	pragma message("GLM: GLM_GTX_string_cast extension included")
 #endif
 
-namespace glm{
-namespace gtx{
-namespace string_cast ///< GLM_GTX_string_cast extension: Setup strings for GLM type values
+namespace glm
 {
-	using namespace gtc::half_float; 
-	using namespace gtx::integer; 
-	using namespace gtx::unsigned_int; 
-	using namespace gtx::quaternion; 
-
-	/// \addtogroup gtx_string_cast
+	/// @addtogroup gtx_string_cast
 	/// @{
 
-	//! Create a string from a GLM type value.
-	//! From GLM_GTX_string_cast extension.
-	template <typename genType> 
-	std::string to_string(genType const & x);
+	/// Create a string from a GLM vector or matrix typed variable.
+	/// @see gtx_string_cast extension.
+	template <template <typename, precision> class matType, typename T, precision P>
+	GLM_FUNC_DECL std::string to_string(matType<T, P> const & x);
 
 	/// @}
-}//namespace string_cast
-}//namespace gtx
 }//namespace glm
 
 #include "string_cast.inl"
-
-namespace glm{using namespace gtx::string_cast;}
-
-#endif//glm_gtx_string_cast

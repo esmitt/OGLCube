@@ -1,81 +1,75 @@
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// OpenGL Mathematics Copyright (c) 2005 - 2011 G-Truc Creation (www.g-truc.net)
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// Created : 2006-01-08
-// Updated : 2006-11-13
-// Licence : This source is under MIT License
-// File    : glm/gtx/fast_trigonometry.hpp
-///////////////////////////////////////////////////////////////////////////////////////////////////
+/// @ref gtx_fast_trigonometry
+/// @file glm/gtx/fast_trigonometry.hpp
+///
+/// @see core (dependence)
+///
+/// @defgroup gtx_fast_trigonometry GLM_GTX_fast_trigonometry
+/// @ingroup gtx
+///
+/// @brief Fast but less accurate implementations of trigonometric functions.
+///
+/// <glm/gtx/fast_trigonometry.hpp> need to be included to use these functionalities.
+
+#pragma once
+
 // Dependency:
-// - GLM core
-///////////////////////////////////////////////////////////////////////////////////////////////////
+#include "../gtc/constants.hpp"
 
-#ifndef glm_gtx_fast_trigonometry
-#define glm_gtx_fast_trigonometry
-
-// Dependency:
-#include "../glm.hpp"
-
-#if(defined(GLM_MESSAGES) && !defined(glm_ext))
+#if GLM_MESSAGES == GLM_MESSAGES_ENABLED && !defined(GLM_EXT_INCLUDED)
 #	pragma message("GLM: GLM_GTX_fast_trigonometry extension included")
 #endif
 
-namespace glm{
-namespace gtx{
-namespace fast_trigonometry	///< GLM_GTX_fast_trigonometry extension: Fast but less accurate implementations of trigonometric functions.
+namespace glm
 {
-	/// \addtogroup gtx_fast_trigonometry
+	/// @addtogroup gtx_fast_trigonometry
 	/// @{
 
-	//! Faster than the common sin function but less accurate. 
-	//! Defined between -2pi and 2pi. 
-	//! From GLM_GTX_fast_trigonometry extension.
-    template <typename T> 
-	T fastSin(const T& angle);
-
-    //! Faster than the common cos function but less accurate.
-	//! Defined between -2pi and 2pi.
-	//! From GLM_GTX_fast_trigonometry extension.
+	/// Wrap an angle to [0 2pi[
+	/// From GLM_GTX_fast_trigonometry extension.
 	template <typename T> 
-	T fastCos(const T& angle);
+	GLM_FUNC_DECL T wrapAngle(T angle);
 
-    //! Faster than the common tan function but less accurate. 
-	//! Defined between -2pi and 2pi. 
-	//! From GLM_GTX_fast_trigonometry extension.
+	/// Faster than the common sin function but less accurate.
+	/// From GLM_GTX_fast_trigonometry extension.
+	template <typename T>
+	GLM_FUNC_DECL T fastSin(T angle);
+
+	/// Faster than the common cos function but less accurate.
+	/// From GLM_GTX_fast_trigonometry extension.
 	template <typename T> 
-	T fastTan(const T& angle);
+	GLM_FUNC_DECL T fastCos(T angle);
 
-    //! Faster than the common asin function but less accurate. 
-	//! Defined between -2pi and 2pi.
-	//! From GLM_GTX_fast_trigonometry extension.
+	/// Faster than the common tan function but less accurate. 
+	/// Defined between -2pi and 2pi. 
+	/// From GLM_GTX_fast_trigonometry extension.
 	template <typename T> 
-	T fastAsin(const T& angle);
+	GLM_FUNC_DECL T fastTan(T angle);
 
-	//! Faster than the common acos function but less accurate. 
-	//! Defined between -2pi and 2pi. 
-	//! From GLM_GTX_fast_trigonometry extension.
-    template <typename T> 
-	T fastAcos(const T& angle);
-
-	//! Faster than the common atan function but less accurate.
-	//! Defined between -2pi and 2pi. 
-	//! From GLM_GTX_fast_trigonometry extension.
+	/// Faster than the common asin function but less accurate. 
+	/// Defined between -2pi and 2pi.
+	/// From GLM_GTX_fast_trigonometry extension.
 	template <typename T> 
-	T fastAtan(const T& y, const T& x);
+	GLM_FUNC_DECL T fastAsin(T angle);
 
-	//! Faster than the common atan function but less accurate. 
-	//! Defined between -2pi and 2pi.
-	//! From GLM_GTX_fast_trigonometry extension.
-    template <typename T> 
-	T fastAtan(const T& angle);
+	/// Faster than the common acos function but less accurate. 
+	/// Defined between -2pi and 2pi. 
+	/// From GLM_GTX_fast_trigonometry extension.
+	template <typename T> 
+	GLM_FUNC_DECL T fastAcos(T angle);
+
+	/// Faster than the common atan function but less accurate.
+	/// Defined between -2pi and 2pi. 
+	/// From GLM_GTX_fast_trigonometry extension.
+	template <typename T> 
+	GLM_FUNC_DECL T fastAtan(T y, T x);
+
+	/// Faster than the common atan function but less accurate. 
+	/// Defined between -2pi and 2pi.
+	/// From GLM_GTX_fast_trigonometry extension.
+	template <typename T> 
+	GLM_FUNC_DECL T fastAtan(T angle);
 
 	/// @}
-}//namespace fast_trigonometry
-}//namespace gtx
 }//namespace glm
 
 #include "fast_trigonometry.inl"
-
-namespace glm{using namespace gtx::fast_trigonometry;}
-
-#endif//glm_gtx_fast_trigonometry

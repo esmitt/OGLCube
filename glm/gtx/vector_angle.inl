@@ -1,58 +1,58 @@
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// OpenGL Mathematics Copyright (c) 2005 - 2011 G-Truc Creation (www.g-truc.net)
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// Created : 2005-12-30
-// Updated : 2008-09-29
-// Licence : This source is under MIT License
-// File    : glm/gtx/vector_angle.inl
-///////////////////////////////////////////////////////////////////////////////////////////////////
+/// @ref gtx_vector_angle
+/// @file glm/gtx/vector_angle.inl
 
-namespace glm{
-namespace gtx{
-namespace vector_angle{
-
-template <typename genType> 
-GLM_FUNC_QUALIFIER typename genType::value_type angle
-(
-	genType const & x, 
-	genType const & y
-)
+namespace glm
 {
-	return degrees(acos(dot(x, y)));
-}
+	template <typename genType> 
+	GLM_FUNC_QUALIFIER genType angle
+	(
+		genType const & x,
+		genType const & y
+	)
+	{
+		GLM_STATIC_ASSERT(std::numeric_limits<genType>::is_iec559, "'angle' only accept floating-point inputs");
+		return acos(clamp(dot(x, y), genType(-1), genType(1)));
+	}
 
-//! \todo epsilon is hard coded to 0.01
-template <typename valType> 
-GLM_FUNC_QUALIFIER valType orientedAngle
-(
-	detail::tvec2<valType> const & x, 
-	detail::tvec2<valType> const & y
-)
-{
-    valType Angle = glm::degrees(acos(dot(x, y)));
-	detail::tvec2<valType> TransformedVector = glm::gtx::rotate_vector::rotate(x, Angle);
-    if(all(equalEpsilon(y, TransformedVector, valType(0.01))))
-		return Angle;
-    else
-        return -Angle;
-}
+	template <typename T, precision P, template <typename, precision> class vecType> 
+	GLM_FUNC_QUALIFIER T angle
+	(
+		vecType<T, P> const & x,
+		vecType<T, P> const & y
+	)
+	{
+		GLM_STATIC_ASSERT(std::numeric_limits<T>::is_iec559, "'angle' only accept floating-point inputs");
+		return acos(clamp(dot(x, y), T(-1), T(1)));
+	}
 
-template <typename valType>
-GLM_FUNC_QUALIFIER valType orientedAngle
-(
-	detail::tvec3<valType> const & x,
-	detail::tvec3<valType> const & y,
-	detail::tvec3<valType> const & ref
-)
-{
-	valType Angle = glm::degrees(glm::acos(glm::dot(x, y)));
+	//! \todo epsilon is hard coded to 0.01
+	template <typename T, precision P>
+	GLM_FUNC_QUALIFIER T orientedAngle
+	(
+		tvec2<T, P> const & x,
+		tvec2<T, P> const & y
+	)
+	{
+		GLM_STATIC_ASSERT(std::numeric_limits<T>::is_iec559, "'orientedAngle' only accept floating-point inputs");
+		T const Angle(acos(clamp(dot(x, y), T(-1), T(1))));
 
-	if(glm::dot(ref, glm::cross(x, y)) < valType(0))
-		return -Angle;
-	else
-		return Angle;
-}
+		if(all(epsilonEqual(y, glm::rotate(x, Angle), T(0.0001))))
+			return Angle;
+		else
+			return -Angle;
+	}
 
-}//namespace vector_angle
-}//namespace gtx
+	template <typename T, precision P>
+	GLM_FUNC_QUALIFIER T orientedAngle
+	(
+		tvec3<T, P> const & x,
+		tvec3<T, P> const & y,
+		tvec3<T, P> const & ref
+	)
+	{
+		GLM_STATIC_ASSERT(std::numeric_limits<T>::is_iec559, "'orientedAngle' only accept floating-point inputs");
+
+		T const Angle(acos(clamp(dot(x, y), T(-1), T(1))));
+		return mix(Angle, -Angle, dot(ref, cross(x, y)) < T(0));
+	}
 }//namespace glm

@@ -1,15 +1,7 @@
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// OpenGL Mathematics Copyright (c) 2005 - 2011 G-Truc Creation (www.g-truc.net)
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// Created : 2007-01-25
-// Updated : 2009-02-19
-// Licence : This source is under MIT License
-// File    : glm/gtx/spline.inl
-///////////////////////////////////////////////////////////////////////////////////////////////////
+/// @ref gtx_spline
+/// @file glm/gtx/spline.inl
 
-namespace glm{
-namespace gtx{
-namespace spline
+namespace glm
 {
 	template <typename genType>
 	GLM_FUNC_QUALIFIER genType catmullRom
@@ -22,8 +14,8 @@ namespace spline
 	)
 	{
 		typename genType::value_type s1 = s;
-		typename genType::value_type s2 = optimum_pow::pow2(s);
-		typename genType::value_type s3 = optimum_pow::pow3(s);
+		typename genType::value_type s2 = pow2(s);
+		typename genType::value_type s3 = pow3(s);
 
 		typename genType::value_type f1 = -s3 + typename genType::value_type(2) * s2 - s;
 		typename genType::value_type f2 = typename genType::value_type(3) * s3 - typename genType::value_type(5) * s2 + typename genType::value_type(2);
@@ -45,8 +37,8 @@ namespace spline
 	)
 	{
 		typename genType::value_type s1 = s;
-		typename genType::value_type s2 = optimum_pow::pow2(s);
-		typename genType::value_type s3 = optimum_pow::pow3(s);
+		typename genType::value_type s2 = pow2(s);
+		typename genType::value_type s3 = pow3(s);
 
 		typename genType::value_type f1 = typename genType::value_type(2) * s3 - typename genType::value_type(3) * s2 + typename genType::value_type(1);
 		typename genType::value_type f2 = typename genType::value_type(-2) * s3 + typename genType::value_type(3) * s2;
@@ -68,7 +60,4 @@ namespace spline
 	{
 		return ((v1 * s + v2) * s + v3) * s + v4;
 	}
-
-}//namespace spline
-}//namespace gtx
 }//namespace glm

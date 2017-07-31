@@ -155,7 +155,8 @@ namespace opengl
 		m_program.disable();
 
 		glutSwapBuffers();
-		if (++m_fAngle > 360.f) m_fAngle -= 360.f;	//for the spinning
+		m_fAngle += 0.05;
+		if (m_fAngle > 360.f) m_fAngle -= 360.f;	//for the spinning
 	}
 
 	///

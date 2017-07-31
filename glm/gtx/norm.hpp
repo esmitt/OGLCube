@@ -1,143 +1,86 @@
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// OpenGL Mathematics Copyright (c) 2005 - 2011 G-Truc Creation (www.g-truc.net)
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// Created : 2005-12-21
-// Updated : 2008-07-24
-// Licence : This source is under MIT License
-// File    : glm/gtx/norm.hpp
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// Dependency:
-// - GLM core
-// - GLM_GTX_quaternion
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// ToDo:
-// - Study the validity of the notion of length2 to quaternion
-///////////////////////////////////////////////////////////////////////////////////////////////////
+/// @ref gtx_norm
+/// @file glm/gtx/norm.hpp
+///
+/// @see core (dependence)
+/// @see gtx_quaternion (dependence)
+///
+/// @defgroup gtx_norm GLM_GTX_norm
+/// @ingroup gtx
+///
+/// @brief Various ways to compute vector norms.
+/// 
+/// <glm/gtx/norm.hpp> need to be included to use these functionalities.
 
-#ifndef glm_gtx_norm
-#define glm_gtx_norm
+#pragma once
 
 // Dependency:
-#include "../glm.hpp"
+#include "../detail/func_geometric.hpp"
 #include "../gtx/quaternion.hpp"
 
-#if(defined(GLM_MESSAGES) && !defined(glm_ext))
+#if GLM_MESSAGES == GLM_MESSAGES_ENABLED && !defined(GLM_EXT_INCLUDED)
 #	pragma message("GLM: GLM_GTX_norm extension included")
 #endif
 
-namespace glm{
-namespace gtx{
-namespace norm ///< GLM_GTX_norm extension: Various way to compute vector norms.
+namespace glm
 {
-	/// \addtogroup gtx_norm
+	/// @addtogroup gtx_norm
 	/// @{
 
-	//! Returns the squared length of x.
-	//! From GLM_GTX_norm extension.
-	template <typename T> 
-	T length2(
-		const T x);
+	/// Returns the squared length of x.
+	/// From GLM_GTX_norm extension.
+	template <typename T, precision P, template <typename, precision> class vecType>
+	GLM_FUNC_DECL T length2(
+		vecType<T, P> const & x);
 
-	//! Returns the squared length of x.
-	//! From GLM_GTX_norm extension.
-	template <typename T> 
-	T length2(
-		const detail::tvec2<T> & x);
-
-	//! Returns the squared length of x.
-	//! From GLM_GTX_norm extension.
-	template <typename T>
-	T length2(
-		const detail::tvec3<T>& x);
-		
-	//! Returns the squared length of x.
-	//! From GLM_GTX_norm extension.
-	template <typename T> 
-	T length2(
-		const detail::tvec4<T>& x);
-		
-	//! Returns the squared length of x.
-	//! From GLM_GTX_norm extension.
-	template <typename T>
-	T length2(
-		const detail::tquat<T>& q);
-
-	//! Returns the squared distance between p0 and p1, i.e., length(p0 - p1).
-	//! From GLM_GTX_norm extension.
-	template <typename T>
-	T distance2(
-		const T p0, 
-		const T p1);
-		
-	//! Returns the squared distance between p0 and p1, i.e., length(p0 - p1).
-	//! From GLM_GTX_norm extension.
-	template <typename T> 
-	T distance2(
-		const detail::tvec2<T>& p0, 
-		const detail::tvec2<T>& p1);
-
-	//! Returns the squared distance between p0 and p1, i.e., length(p0 - p1).
-	//! From GLM_GTX_norm extension.
-	template <typename T>
-	T distance2(
-		const detail::tvec3<T>& p0,
-		const detail::tvec3<T>& p1);
-
-	//! Returns the squared distance between p0 and p1, i.e., length(p0 - p1).
-	//! From GLM_GTX_norm extension.
-	template <typename T>
-	T distance2(
-		const detail::tvec4<T>& p0, 
-		const detail::tvec4<T>& p1);
+	/// Returns the squared distance between p0 and p1, i.e., length2(p0 - p1).
+	/// From GLM_GTX_norm extension.
+	template <typename T, precision P, template <typename, precision> class vecType>
+	GLM_FUNC_DECL T distance2(
+		vecType<T, P> const & p0,
+		vecType<T, P> const & p1);
 
 	//! Returns the L1 norm between x and y.
 	//! From GLM_GTX_norm extension.
-	template <typename T>
-	T l1Norm(
-		const detail::tvec3<T>& x,
-		const detail::tvec3<T>& y);
+	template <typename T, precision P>
+	GLM_FUNC_DECL T l1Norm(
+		tvec3<T, P> const & x,
+		tvec3<T, P> const & y);
 		
 	//! Returns the L1 norm of v.
 	//! From GLM_GTX_norm extension.
-	template <typename T> 
-	T l1Norm(
-		const detail::tvec3<T>& v);
+	template <typename T, precision P>
+	GLM_FUNC_DECL T l1Norm(
+		tvec3<T, P> const & v);
 		
 	//! Returns the L2 norm between x and y.
 	//! From GLM_GTX_norm extension.
-	template <typename T> 
-	T l2Norm(
-		const detail::tvec3<T>& x, 
-		const detail::tvec3<T>& y);
+	template <typename T, precision P>
+	GLM_FUNC_DECL T l2Norm(
+		tvec3<T, P> const & x,
+		tvec3<T, P> const & y);
 		
 	//! Returns the L2 norm of v.
 	//! From GLM_GTX_norm extension.
-	template <typename T> 
-	T l2Norm(
-		const detail::tvec3<T>& x);
+	template <typename T, precision P>
+	GLM_FUNC_DECL T l2Norm(
+		tvec3<T, P> const & x);
 		
 	//! Returns the L norm between x and y.
 	//! From GLM_GTX_norm extension.
-	template <typename T> 
-	T lxNorm(
-		const detail::tvec3<T>& x,
-		const detail::tvec3<T>& y,
+	template <typename T, precision P>
+	GLM_FUNC_DECL T lxNorm(
+		tvec3<T, P> const & x,
+		tvec3<T, P> const & y,
 		unsigned int Depth);
 
 	//! Returns the L norm of v.
 	//! From GLM_GTX_norm extension.
-	template <typename T>
-	T lxNorm(
-		const detail::tvec3<T>& x,
+	template <typename T, precision P>
+	GLM_FUNC_DECL T lxNorm(
+		tvec3<T, P> const & x,
 		unsigned int Depth);
 
 	/// @}
-}//namespace norm
-}//namespace gtx
 }//namespace glm
 
 #include "norm.inl"
-
-namespace glm{using namespace gtx::norm;}
-
-#endif//glm_gtx_norm

@@ -1,55 +1,48 @@
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// OpenGL Mathematics Copyright (c) 2005 - 2011 G-Truc Creation (www.g-truc.net)
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// Created : 2009-03-06
-// Updated : 2009-03-09
-// Licence : This source is under MIT License
-// File    : glm/gtx/gradient_paint.hpp
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// Dependency:
-// - GLM core
-///////////////////////////////////////////////////////////////////////////////////////////////////
+/// @ref gtx_gradient_paint
+/// @file glm/gtx/gradient_paint.hpp
+///
+/// @see core (dependence)
+/// @see gtx_optimum_pow (dependence)
+///
+/// @defgroup gtx_gradient_paint GLM_GTX_gradient_paint
+/// @ingroup gtx
+///
+/// @brief Functions that return the color of procedural gradient for specific coordinates.
+/// <glm/gtx/gradient_paint.hpp> need to be included to use these functionalities.
 
-#ifndef glm_gtx_gradient_paint
-#define glm_gtx_gradient_paint
+#pragma once
 
 // Dependency:
 #include "../glm.hpp"
 #include "../gtx/optimum_pow.hpp"
 
-#if(defined(GLM_MESSAGES) && !defined(glm_ext))
+#if GLM_MESSAGES == GLM_MESSAGES_ENABLED && !defined(GLM_EXT_INCLUDED)
 #	pragma message("GLM: GLM_GTX_gradient_paint extension included")
 #endif
 
-namespace glm{
-namespace gtx{
-namespace gradient_paint ///< GLM_GTX_gradient_paint extension: Compute a radient gradient according section OpenVG 1.1 specifications, 9.3.2 Radial Gradients
+namespace glm
 {
-	using namespace gtx::optimum_pow;
-
-	/// \addtogroup gtx_gradient_paint
+	/// @addtogroup gtx_gradient_paint
 	/// @{
 
-	template <typename valType>
-	valType radialGradient(
-		glm::detail::tvec2<valType> const & Center,
-		valType const & Radius,
-		glm::detail::tvec2<valType> const & Focal,
-		glm::detail::tvec2<valType> const & Position);
+	/// Return a color from a radial gradient.
+	/// @see - gtx_gradient_paint
+	template <typename T, precision P>
+	GLM_FUNC_DECL T radialGradient(
+		tvec2<T, P> const & Center,
+		T const & Radius,
+		tvec2<T, P> const & Focal,
+		tvec2<T, P> const & Position);
 
-	template <typename valType>
-	valType linearGradient(
-		glm::detail::tvec2<valType> const & Point0,
-		glm::detail::tvec2<valType> const & Point1,
-		glm::detail::tvec2<valType> const & Position);
+	/// Return a color from a linear gradient.
+	/// @see - gtx_gradient_paint
+	template <typename T, precision P>
+	GLM_FUNC_DECL T linearGradient(
+		tvec2<T, P> const & Point0,
+		tvec2<T, P> const & Point1,
+		tvec2<T, P> const & Position);
 
 	/// @}
-}// namespace gradient_paint
-}// namespace gtx
 }// namespace glm
 
 #include "gradient_paint.inl"
-
-namespace glm{using namespace gtx::gradient_paint;}
-
-#endif//glm_gtx_gradient_paint

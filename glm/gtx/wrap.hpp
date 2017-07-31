@@ -1,54 +1,51 @@
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// OpenGL Mathematics Copyright (c) 2005 - 2011 G-Truc Creation (www.g-truc.net)
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// Created : 2009-11-25
-// Updated : 2009-11-25
-// Licence : This source is under MIT License
-// File    : glm/gtx/wrap.hpp
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// Dependency:
-// - GLM core
-///////////////////////////////////////////////////////////////////////////////////////////////////
+/// @ref gtx_wrap
+/// @file glm/gtx/wrap.hpp
+///
+/// @see core (dependence)
+///
+/// @defgroup gtx_wrap GLM_GTX_wrap
+/// @ingroup gtx
+///
+/// @brief Wrapping mode of texture coordinates.
+///
+/// <glm/gtx/wrap.hpp> need to be included to use these functionalities.
 
-#ifndef glm_gtx_wrap
-#define glm_gtx_wrap
+#pragma once
 
 // Dependency:
 #include "../glm.hpp"
+#include "../gtc/vec1.hpp"
 
-#if(defined(GLM_MESSAGES) && !defined(glm_ext))
+#if GLM_MESSAGES == GLM_MESSAGES_ENABLED && !defined(GLM_EXT_INCLUDED)
 #	pragma message("GLM: GLM_GTX_wrap extension included")
 #endif
 
-namespace glm{
-namespace gtx{
-namespace wrap ///< GLM_GTX_wrap: Wrapping mode using my texture samping.
+namespace glm
 {
-	/// \addtogroup gtx_wrap
+	/// @addtogroup gtx_wrap
 	/// @{
 
-	//! Simulate GL_CLAMP OpenGL wrap mode
-	//! From GLM_GTX_wrap extension.
-	template <typename genType> 
-	genType clamp(genType const & Texcoord);
+	/// Simulate GL_CLAMP OpenGL wrap mode
+	/// @see gtx_wrap extension.
+	template <typename genType>
+	GLM_FUNC_DECL genType clamp(genType const& Texcoord);
 
-	//! Simulate GL_REPEAT OpenGL wrap mode
-	//! From GLM_GTX_wrap extension.
-	template <typename genType> 
-	genType repeat(genType const & Texcoord);
+	/// Simulate GL_REPEAT OpenGL wrap mode
+	/// @see gtx_wrap extension.
+	template <typename genType>
+	GLM_FUNC_DECL genType repeat(genType const& Texcoord);
 
-	//! Simulate GL_MIRROR_REPEAT OpenGL wrap mode
-	//! From GLM_GTX_wrap extension.
-	template <typename genType> 
-	genType mirrorRepeat(genType const & Texcoord);
+	/// Simulate GL_MIRRORED_REPEAT OpenGL wrap mode
+	/// @see gtx_wrap extension.
+	template <typename genType>
+	GLM_FUNC_DECL genType mirrorClamp(genType const& Texcoord);
+
+	/// Simulate GL_MIRROR_REPEAT OpenGL wrap mode
+	/// @see gtx_wrap extension.
+	template <typename genType>
+	GLM_FUNC_DECL genType mirrorRepeat(genType const& Texcoord);
 
 	/// @}
-}// namespace wrap
-}// namespace gtx
 }// namespace glm
 
 #include "wrap.inl"
-
-namespace glm{using namespace gtx::wrap;}
-
-#endif//glm_img_wrap

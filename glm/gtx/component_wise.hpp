@@ -1,63 +1,65 @@
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// OpenGL Mathematics Copyright (c) 2005 - 2011 G-Truc Creation (www.g-truc.net)
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// Created : 2007-05-21
-// Updated : 2007-05-21
-// Licence : This source is under MIT License
-// File    : glm/gtx/component_wise.hpp
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// Dependency:
-// - GLM core
-///////////////////////////////////////////////////////////////////////////////////////////////////
+/// @ref gtx_component_wise
+/// @file glm/gtx/component_wise.hpp
+/// @date 2007-05-21 / 2011-06-07
+/// @author Christophe Riccio
+/// 
+/// @see core (dependence)
+///
+/// @defgroup gtx_component_wise GLM_GTX_component_wise
+/// @ingroup gtx
+///
+/// @brief Operations between components of a type
+///
+/// <glm/gtx/component_wise.hpp> need to be included to use these functionalities.
 
-#ifndef glm_gtx_component_wise
-#define glm_gtx_component_wise
+#pragma once
 
-// Dependency:
-#include "../glm.hpp"
+// Dependencies
+#include "../detail/setup.hpp"
+#include "../detail/precision.hpp"
 
-#if(defined(GLM_MESSAGES) && !defined(glm_ext))
+#if GLM_MESSAGES == GLM_MESSAGES_ENABLED && !defined(GLM_EXT_INCLUDED)
 #	pragma message("GLM: GLM_GTX_component_wise extension included")
 #endif
 
-namespace glm{
-namespace gtx{
-namespace component_wise ///< GLM_GTX_component_wise extension: Operations between components of a type
+namespace glm
 {
-	/// \addtogroup gtx_component_wise
+	/// @addtogroup gtx_component_wise
 	/// @{
 
-	//! Add all vector components together. 
-	//! From GLM_GTX_component_wise extension.
-	template <typename genType> 
-	typename genType::value_type compAdd(
-		genType const & v);
+	/// Convert an integer vector to a normalized float vector.
+	/// If the parameter value type is already a floating precision type, the value is passed through.
+	/// @see gtx_component_wise
+	template <typename floatType, typename T, precision P, template <typename, precision> class vecType>
+	GLM_FUNC_DECL vecType<floatType, P> compNormalize(vecType<T, P> const & v);
 
-	//! Multiply all vector components together. 
-	//! From GLM_GTX_component_wise extension.
-	template <typename genType> 
-	typename genType::value_type compMul(
-		genType const & v);
+	/// Convert a normalized float vector to an integer vector.
+	/// If the parameter value type is already a floating precision type, the value is passed through.
+	/// @see gtx_component_wise
+	template <typename T, typename floatType, precision P, template <typename, precision> class vecType>
+	GLM_FUNC_DECL vecType<T, P> compScale(vecType<floatType, P> const & v);
 
-	//! Find the minimum value between single vector components.
-	//! From GLM_GTX_component_wise extension.
+	/// Add all vector components together. 
+	/// @see gtx_component_wise
 	template <typename genType> 
-	typename genType::value_type compMin(
-		genType const & v);
+	GLM_FUNC_DECL typename genType::value_type compAdd(genType const & v);
 
-	//! Find the maximum value between single vector components.
-	//! From GLM_GTX_component_wise extension.
+	/// Multiply all vector components together. 
+	/// @see gtx_component_wise
 	template <typename genType> 
-	typename genType::value_type compMax(
-		genType const & v);
+	GLM_FUNC_DECL typename genType::value_type compMul(genType const & v);
+
+	/// Find the minimum value between single vector components.
+	/// @see gtx_component_wise
+	template <typename genType> 
+	GLM_FUNC_DECL typename genType::value_type compMin(genType const & v);
+
+	/// Find the maximum value between single vector components.
+	/// @see gtx_component_wise
+	template <typename genType> 
+	GLM_FUNC_DECL typename genType::value_type compMax(genType const & v);
 
 	/// @}
-}//namespace component_wise
-}//namespace gtx
 }//namespace glm
 
 #include "component_wise.inl"
-
-namespace glm{using namespace gtx::component_wise;}
-
-#endif//glm_gtx_component_wise

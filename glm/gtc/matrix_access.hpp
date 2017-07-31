@@ -1,70 +1,59 @@
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// OpenGL Mathematics Copyright (c) 2005 - 2011 G-Truc Creation (www.g-truc.net)
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// Created : 2005-12-27
-// Updated : 2010-11-12
-// Licence : This source is under MIT License
-// File    : glm/gtc/matrix_access.hpp
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// Dependency:
-// - GLM core
-///////////////////////////////////////////////////////////////////////////////////////////////////
+/// @ref gtc_matrix_access
+/// @file glm/gtc/matrix_access.hpp
+///
+/// @see core (dependence)
+///
+/// @defgroup gtc_matrix_access GLM_GTC_matrix_access
+/// @ingroup gtc
+/// 
+/// Defines functions to access rows or columns of a matrix easily.
+/// <glm/gtc/matrix_access.hpp> need to be included to use these functionalities.
 
-#ifndef glm_gtc_matrix_access
-#define glm_gtc_matrix_access
+#pragma once
 
 // Dependency:
-#include "../glm.hpp"
+#include "../detail/setup.hpp"
 
-#if(defined(GLM_MESSAGES) && !defined(glm_ext))
+#if GLM_MESSAGES == GLM_MESSAGES_ENABLED && !defined(GLM_EXT_INCLUDED)
 #	pragma message("GLM: GLM_GTC_matrix_access extension included")
 #endif
 
-namespace glm{
-namespace gtc{
-namespace matrix_access ///< GLM_GTC_matrix_access extension: Set a column or a row of a matrix
+namespace glm
 {
-	/// \addtogroup gtc_matrix_access
-	///@{
+	/// @addtogroup gtc_matrix_access
+	/// @{
 
-	//! Get a specific row of a matrix.
-	//! From GLM_GTC_matrix_access extension.
-	template <typename genType> 
-	typename genType::row_type row(
-		genType const & m, 
-		int index);
+	/// Get a specific row of a matrix.
+	/// @see gtc_matrix_access
+	template <typename genType>
+	GLM_FUNC_DECL typename genType::row_type row(
+		genType const & m,
+		length_t index);
 
-	//! Set a specific row to a matrix.
-	//! From GLM_GTC_matrix_access extension.
-    template <typename genType> 
-	genType row(
-		genType const & m, 
-		int index, 
+	/// Set a specific row to a matrix.
+	/// @see gtc_matrix_access
+	template <typename genType>
+	GLM_FUNC_DECL genType row(
+		genType const & m,
+		length_t index,
 		typename genType::row_type const & x);
 
-	//! Get a specific column of a matrix.
-	//! From GLM_GTC_matrix_access extension.
-	template <typename genType> 
-	typename genType::col_type column(
-		genType const & m, 
-		int index);
+	/// Get a specific column of a matrix.
+	/// @see gtc_matrix_access
+	template <typename genType>
+	GLM_FUNC_DECL typename genType::col_type column(
+		genType const & m,
+		length_t index);
 
-	 //! Set a specific column to a matrix.
-	 //! From GLM_GTC_matrix_access extension.
-	template <typename genType> 
-	genType column(
-		genType const & m, 
-		int index, 
+	/// Set a specific column to a matrix.
+	/// @see gtc_matrix_access
+	template <typename genType>
+	GLM_FUNC_DECL genType column(
+		genType const & m,
+		length_t index,
 		typename genType::col_type const & x);
 
-	///@}
-
-}//namespace matrix_access
-}//namespace gtc
+	/// @}
 }//namespace glm
 
 #include "matrix_access.inl"
-
-namespace glm{using namespace gtc::matrix_access;}
-
-#endif//glm_gtc_matrix_access

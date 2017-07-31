@@ -1,51 +1,49 @@
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// OpenGL Mathematics Copyright (c) 2005 - 2011 G-Truc Creation (www.g-truc.net)
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// Created : 2005-12-21
-// Updated : 2010-12-13
-// Licence : This source is under MIT License
-// File    : glm/gtc/matrix_inverse.hpp
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// Dependency:
-// - GLM core
-///////////////////////////////////////////////////////////////////////////////////////////////////
+/// @ref gtc_matrix_inverse
+/// @file glm/gtc/matrix_inverse.hpp
+///
+/// @see core (dependence)
+///
+/// @defgroup gtc_matrix_inverse GLM_GTC_matrix_inverse
+/// @ingroup gtc
+///
+/// Defines additional matrix inverting functions.
+/// <glm/gtc/matrix_inverse.hpp> need to be included to use these functionalities.
 
-#ifndef glm_gtc_matrix_inverse
-#define glm_gtc_matrix_inverse
+#pragma once
 
-// Dependency:
-#include "../glm.hpp"
+// Dependencies
+#include "../detail/setup.hpp"
+#include "../matrix.hpp"
+#include "../mat2x2.hpp"
+#include "../mat3x3.hpp"
+#include "../mat4x4.hpp"
 
-#if(defined(GLM_MESSAGES) && !defined(glm_ext))
+#if GLM_MESSAGES == GLM_MESSAGES_ENABLED && !defined(GLM_EXT_INCLUDED)
 #	pragma message("GLM: GLM_GTC_matrix_inverse extension included")
 #endif
 
-namespace glm{
-namespace gtc{
-namespace matrix_inverse ///< GLM_GTC_matrix_inverse extension: Inverse matrix functions
+namespace glm
 {
-	/// \addtogroup gtc_matrix_inverse
-	///@{
+	/// @addtogroup gtc_matrix_inverse
+	/// @{
 
-	//! Fast matrix inverse for affine matrix.
-	//! From GLM_GTC_matrix_inverse extension.
+	/// Fast matrix inverse for affine matrix.
+	/// 
+	/// @param m Input matrix to invert.
+	/// @tparam genType Squared floating-point matrix: half, float or double. Inverse of matrix based of half-precision floating point value is highly innacurate.
+	/// @see gtc_matrix_inverse
 	template <typename genType> 
-	genType affineInverse(genType const & m);
+	GLM_FUNC_DECL genType affineInverse(genType const & m);
 
-	//! Compute the inverse transpose of a matrix.
-	//! From GLM_GTC_matrix_inverse extension.
-	template <typename genType> 
-	GLM_FUNC_QUALIFIER typename genType::value_type inverseTranspose(
-		genType const & m);
+	/// Compute the inverse transpose of a matrix.
+	/// 
+	/// @param m Input matrix to invert transpose.
+	/// @tparam genType Squared floating-point matrix: half, float or double. Inverse of matrix based of half-precision floating point value is highly innacurate.
+	/// @see gtc_matrix_inverse
+	template <typename genType>
+	GLM_FUNC_DECL genType inverseTranspose(genType const & m);
 
-	///@}
-
-}//namespace matrix_inverse
-}//namespace gtc
+	/// @}
 }//namespace glm
 
 #include "matrix_inverse.inl"
-
-namespace glm{using namespace gtc::matrix_inverse;}
-
-#endif//glm_gtc_matrix_inverse

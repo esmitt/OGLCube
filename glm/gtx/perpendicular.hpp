@@ -1,62 +1,39 @@
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// OpenGL Mathematics Copyright (c) 2005 - 2011 G-Truc Creation (www.g-truc.net)
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// Created : 2005-12-21
-// Updated : 2009-03-06
-// Licence : This source is under MIT License
-// File    : glm/gtx/perpendicular.hpp
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// Dependency:
-// - GLM core
-// - GLM_GTX_projection
-///////////////////////////////////////////////////////////////////////////////////////////////////
+/// @ref gtx_perpendicular
+/// @file glm/gtx/perpendicular.hpp
+///
+/// @see core (dependence)
+/// @see gtx_projection (dependence)
+///
+/// @defgroup gtx_perpendicular GLM_GTX_perpendicular
+/// @ingroup gtx
+///
+/// @brief Perpendicular of a vector from other one
+///
+/// <glm/gtx/perpendicular.hpp> need to be included to use these functionalities.
 
-#ifndef glm_gtx_perpendicular
-#define glm_gtx_perpendicular
+#pragma once
 
 // Dependency:
 #include "../glm.hpp"
 #include "../gtx/projection.hpp"
 
-#if(defined(GLM_MESSAGES) && !defined(glm_ext))
+#if GLM_MESSAGES == GLM_MESSAGES_ENABLED && !defined(GLM_EXT_INCLUDED)
 #	pragma message("GLM: GLM_GTX_perpendicular extension included")
 #endif
 
-namespace glm{
-namespace gtx{
-namespace perpendicular ///< GLM_GTX_perpendicular extension: Perpendicular of a vector from other one
+namespace glm
 {
-	/// \addtogroup gtx_perpendicular
+	/// @addtogroup gtx_perpendicular
 	/// @{
 
 	//! Projects x a perpendicular axis of Normal.
 	//! From GLM_GTX_perpendicular extension.
-	template <typename T> 
-	detail::tvec2<T> perp(
-		detail::tvec2<T> const & x, 
-		detail::tvec2<T> const & Normal);
-
-    //! Projects x a perpendicular axis of Normal.
-	//! From GLM_GTX_perpendicular extension.
-	template <typename T> 
-	detail::tvec3<T> perp(
-		detail::tvec3<T> const & x, 
-		detail::tvec3<T> const & Normal);
-
-    //! Projects x a perpendicular axis of Normal.
-	//! From GLM_GTX_perpendicular extension.
-	template <typename T> 
-	detail::tvec4<T> perp(
-		detail::tvec4<T> const & x, 
-		detail::tvec4<T> const & Normal);
+	template <typename vecType> 
+	GLM_FUNC_DECL vecType perp(
+		vecType const & x, 
+		vecType const & Normal);
 
 	/// @}
-}//namespace perpendicular
-}//namespace gtx
 }//namespace glm
 
 #include "perpendicular.inl"
-
-namespace glm{using namespace gtx::perpendicular;}
-
-#endif//glm_gtx_perpendicular
